@@ -1,0 +1,108 @@
+import { Meta, Title, Subtitle, Subheading } from '@storybook/blocks';
+import '../src/seven-segment.ts';
+
+<Meta title="Introduction" name="ToC" />
+<Title>Introduction</Title>
+<Subtitle>A vanilla web component that renders an fully customizable and performant segmented display</Subtitle>
+
+<div>
+  <a href="https://github.com/dartbotapp/segment" rel="noopener noreferrer" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-Code-232323.svg?style=flat&amp;logo=github&amp;logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://docs.dartbot.com/segment" rel="noopener noreferrer" target="_blank">
+    <img src="https://img.shields.io/badge/Docs-Website-232323.svg?style=flat" alt="Documentation" />
+  </a>
+  <a href="https://www.npmjs.com/package/@dartbot/segment" rel="noopener noreferrer" target="_blank">
+    <img src="https://img.shields.io/npm/dw/@dartbot/segment?label=npm&amp;style=flat" alt="npm" />
+  </a>
+  <a href="https://github.com/dartbotapp/segment/actions/workflows/publish.yml" rel="noopener noreferrer" target="_blank">
+    <img src="https://img.shields.io/github/actions/workflow/status/dartbotapp/segment/publish.yml" alt="GitHub Actions Workflow Status" />
+  </a>
+  <a href="https://github.com/dartbotapp/segment/blob/main/LICENSE" rel="noopener noreferrer" target="_blank">
+    <img src="https://img.shields.io/badge/license-MIT-232323.svg?style=flat" alt="License" />
+  </a>
+</div>
+
+<style>
+{`
+  #intro {
+    display: flex;
+  }
+  .intro-img {
+    min-width: 20em;
+    display:flex;
+    flex-basis: 50%;
+  }
+  .intro-goals {
+    min-width: 30em;
+    flex-basis: 50%;
+  }
+  @media screen and (max-width: 1280px) {
+    #intro {
+      display: block;
+    }
+  }
+`}
+
+</style>
+
+<div id="intro">
+  <div className="intro-goals" style={{ 'paddingRight': '4em '}}>
+    <br />
+    ## Design Goals
+
+    🎨 **HTML Canvas**
+    Render using HTMLCanvas
+
+    🍦 **Vanilla Web Component**
+    Export as a dependency-free vanilla web component, usable with just HTML, CSS, and JS
+
+    #️⃣ **Typescript**
+    Written in Typescript
+
+    🌈 **Styles**
+    Offer fully customizable styling. Where possible use CSS to control customized settings
+
+    🧾 **Support CSS props**
+    CSS properties like padding, margin, filters, etc., should affect the element as expected
+
+    🌐 **Accessibility**
+    Implement accessibility recommendations. WCAG, WAI-ARIA
+
+    🏎️💨 **Performance**
+    High performance, low memory usage, and fast rendering
+  </div>
+  <div className="intro-img">
+    <img src="../../storybook-public/segments.png" alt="Dartboard" title="Dartboard" />
+  </div>
+</div>
+
+## Installation
+```bash
+npm install @dartbot/segment
+```
+```html
+<script type="module">
+  import '@dartbot/segment/seven-segment.js';
+</script>
+
+<seven-segment></seven-segment>
+```
+
+## Why Web Components?
+Web components are a set of web platform APIs that allow you to create new custom, reusable,
+encapsulated HTML tags to use in web pages and web apps. Custom components and widgets build
+on the Web Component standards, will work across modern browsers, and can be used with any
+JavaScript library or framework that works with HTML.
+
+## Browser Support
+Dartbot is tested in the latest version of the following browsers.
+<img src="./chrome.png" alt="Chrome" title="Chrome" width="64" height="64" />
+<img src="./edge.png" alt="Edge" title="Edge" width="64" height="64" />
+<img src="./firefox.png" alt="Firefox" title="Firefox" width="64" height="64" />
+<img src="./opera.png" alt="Opera" title="Opera" width="64" height="64" />
+
+Older browsers may require [polyfills to support web component](https://github.com/webcomponents/polyfills) features required by this library.
+
+## License
+Dartbot was created by Stephen Marsh. It’s available under the terms of the MIT license.

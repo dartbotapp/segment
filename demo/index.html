@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo">
+    <seven-segment header="hello dartbot">
+      some light-dom
+    </seven-segment>
+  </div>
+
+  <script type="module" defer>
+    import '../dist/lib/seven-segment.js';
+
+    const demo = document.getElementById('demo');
+    const dartboard = demo.querySelector('seven-segment');
+    dartboard.addEventListener('dartboard-click', (e) => {
+      console.log('dartboard-click', e.detail);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+import { Meta, Canvas, Title, Subtitle } from '@storybook/blocks';
+import * as ValueStories from './values.stories';
+
+<Meta title="Display" name="Display" />
+
+<Title>Display</Title>
+<Subtitle>Control how the value is displayed using these methods</Subtitle>
+
+# Format
+
+The `format` attribute controls the number of digits displayed on the segment.
+The `#` character is used to specify the number of digits to show in the display.
+<Canvas of={ValueStories.Format} />
+
+# Display Value
+Set the display value using one of the following methods:
+
+### displayText Attribute
+Set the value of the segment using the `displayText` attribute of the element.
+<Canvas of={ValueStories.AttributeText} />
+
+### setText Method
+Use the `setText()` method on the element.
+<Canvas of={ValueStories.ApiText} />
+
+### setMask Method
+Set the value of the segment using the `setMask` method.
+This method allows you to turn on each segment using a bitmask.
+Each segment of the digit is turned on by setting the bit to 1 in the position of the segment.
+
+```JavaScript
+// Bitmask can be represented in several ways
+segment.setMasks([0b1111000]);               // Binary
+segment.setMasks([parseInt('1111000', 2)]);  // Binary
+segment.setMasks([0x3CF]);                   // Hex
+segment.setMasks([975]);                     // Decimal
+```
+
+```JavaScript
+// Segment layout
+ -- a --
+|       |
+f       b
+|       |
+ -- g --
+|       |
+e       c
+|       |
+ -- d --
+
+const a = 1 << 0,  b = 1 << 1,
+      c = 1 << 2,  d = 1 << 3,
+      e = 1 << 4,  f = 1 << 5,
+      g = 1 << 6;
+
+segment.setMasks([
+  b | c | e | f | g,  // 0b1110110 - H
+  a | d | e | f | g,  // 0b1111111 - E
+  a | d | e | f | g,  // 0b0111000 - L
+  a | d | e | f | g,  // 0b0111000 - L
+  a | d | e | f | g,  // 0b0111111 - O
+]);
+```
+
+```JavaScript
+
+```
+<Canvas of={ValueStories.ApiSegment} />
+<Canvas of={ValueStories.ApiMask} />

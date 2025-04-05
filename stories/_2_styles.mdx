@@ -1,0 +1,58 @@
+import { Meta, Canvas, Title, Subtitle, Unstyled } from '@storybook/blocks';
+import { Token } from '../src/render-segment/token.ts';
+import * as ThemeStories from './styles.stories';
+import * as ColorStories from './colors.stories';
+
+export const colorSample = (c) =>
+  (<div className="color-sample" style={{ backgroundColor: c  }}></div>);
+export const token = (t) =>
+  (<code>{t}</code>);
+
+<Meta title="Styles" name="Styles" />
+
+<Title>Styles</Title>
+<Subtitle>Customize the rendering of the segment with CSS</Subtitle>
+
+### Background Colors
+{token(Token.segmentBackground)}
+<Canvas of={ColorStories.BackgroundColors} />
+
+### Segment Colors
+{token(Token.fillOn)}
+{token(Token.fillOff)}
+<Canvas of={ColorStories.SegmentColor} />
+
+### Stroke Colors
+{token(Token.strokeOn)}
+{token(Token.strokeOff)}
+<Canvas of={ColorStories.StrokeColors} />
+
+### Segment Width
+{token(Token.segmentWidth)}
+<Canvas of={ThemeStories.SegmentWidth} />
+
+### Stroke Width
+{token(Token.strokeWidth)}
+<Canvas of={ThemeStories.StrokeWidth} />
+
+### Segment Interval
+{token(Token.segmentInterval)}
+<Canvas of={ThemeStories.SegmentInterval} />
+
+### Bevel Width
+{token(Token.bevelWidth)}
+<Canvas of={ThemeStories.SegmentBevelWidth} />
+
+### Element Shear
+{token(Token.shear)}
+<Canvas of={ThemeStories.ElementShear} />
+
+
+### Element Spacing
+{token(Token.elementSpacing)}
+<Canvas of={ThemeStories.ElementSpacing} />
+
+
+### Element Padding
+{token(Token.elementPadding)}
+<Canvas of={ThemeStories.ElementPadding} />

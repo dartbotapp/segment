@@ -1,0 +1,118 @@
+import { Meta, Canvas, Title, Description, Subtitle } from '@storybook/blocks';
+import { Token, tokenDefaults } from '../src/render-segment/token.ts';
+import '../src/seven-segment.ts';
+
+export const colorSample = (c) =>
+  (<div className="color-sample" style={{ backgroundColor: c  }}></div>);
+
+export const tokenRow = (token, sample, description) => (
+  <tr>
+    <td>{token}</td>
+    <td>{tokenDefaults[token]}</td>
+    <td>{sample ? colorSample(tokenDefaults[token]) : ''}</td>
+    <td></td>
+    <td>{description} </td>
+  </tr>
+);
+
+<Meta title="Design Tokens" name="tokens" />
+
+<style>
+  {`
+    .color-sample {
+      width: 4em;
+      height: 1.5em;
+      border-radius: .2em;
+    }
+
+    tbody > tr > td:nth-child(1) {
+      white-space: nowrap;
+    }
+  `}
+</style>
+
+<Title>Design Tokens</Title>
+<Subtitle>Customize the rendering of the segments with CSS variables</Subtitle>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Default</th>
+      <th>Sample</th>
+      <th></th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th colSpan="4">
+      Colors Palette
+      </th>
+    </tr>
+
+    {tokenRow(Token.segmentBackground, true, 'The background color of the component')}
+    {tokenRow(Token.fillOn, true, 'The color of the segments when they are on')}
+    {tokenRow(Token.fillOff, true, 'The color of the segments when they are off')}
+    {tokenRow(Token.strokeOn, true, 'The color of the outline stroke when segment is on')}
+    {tokenRow(Token.strokeOff, true, 'The color of the outline stroke when segment is off')}
+    {tokenRow(Token.strokeWidth, false, 'The width of the outline stroke around segments')}
+    {tokenRow(Token.elementSpacing, true, 'The spacing between the elements of the component')}
+    {tokenRow(Token.elementPadding, true, 'The padding between the elements and the component edge')}
+    {tokenRow(Token.segmentWidth, true, 'The width of the segments')}
+    {tokenRow(Token.segmentInterval, true, 'The spacing between individual segments of an element')}
+    {tokenRow(Token.bevelWidth, true, 'The size of the bevel on the segments')}
+    {tokenRow(Token.sideBevelEnabled, false, 'Whether to show the bevel on the segments')}
+    {tokenRow(Token.shear, 0, 'The shear of the segments')}
+  </tbody>
+</table>
+
+# Usage
+
+Design tokens are applied to the component using CSS variables.
+
+```html
+  <style>
+    seven-segment {
+      --dartbot-segment-background: #000;
+      --dartbot-fill-on: #f00;
+      --dartbot-fill-off: #300;
+      --dartbot-stroke-on: #ff0;
+      --dartbot-stroke-off: #000;
+      --dartbot-stroke-width: 4;
+      --dartbot-element-spacing: 2;
+      --dartbot-element-padding: 2;
+      --dartbot-segment-width: 2;
+      --dartbot-segment-interval: 4;
+      --dartbot-bevel-width: .5;
+      --dartbot-side-bevel-enabled: true;
+      --dartbot-shear: 0;
+    }
+  </style>
+
+  <seven-segment displayText="CSS Vars"></seven-segment>
+
+```
+
+<style>
+{`
+  seven-segment {
+    aspect-ratio: 5 / 1.5;
+    ${Token.segmentBackground}: #200;
+    ${Token.fillOn}: #f00;
+    ${Token.fillOff}: #300;
+    ${Token.strokeOn}: #ff0;
+    ${Token.strokeOff}: #000;
+    ${Token.strokeWidth}: 4;
+    ${Token.elementSpacing}: 4;
+    ${Token.elementPadding}: 2;
+    ${Token.segmentWidth}: 2;
+    ${Token.segmentInterval}: 4;
+    ${Token.bevelWidth}: .5;
+    ${Token.sideBevelEnabled}: true;
+    ${Token.shear}: 0;
+  }
+`}
+</style>
+
+<seven-segment displayText="CSS"></seven-segment>
