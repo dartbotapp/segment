@@ -16,7 +16,7 @@ This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) reco
 
 <h3><a href="https://docs.dartbot.com/segment"><img style="width:.9em;margin-right:.2em" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/storybook.svg">Storybook Documentation</</a></h3>
 
-- **Demo** - For a <a href="https://docs.darbot.com">live demo</a> visit the Storybook docs</a>
+- **Demo** - For a <a href="https://docs.dartbot.com/segment">live demo</a> visit the Storybook docs</a>
 - <a href="https://medium.com/p/0fee96256bf4">Tutorial and walkthrough</a> on Medium
 
 ## Design Goals
