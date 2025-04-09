@@ -112,8 +112,8 @@ To run a local development server that serves the basic demo located in `demo/in
 
 ## To Do
 - [ ] Set Format
- - [x] char masks
- - [ ] align
+  - [x] char masks
+  - [x] align
 - [ ] Export Image
   - [ ] standard
   - [ ] large size

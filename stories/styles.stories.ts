@@ -22,6 +22,48 @@ export const Default: Story = {
   render: () => `<seven-segment></seven-segment>`,
 };
 
+export const Align: Story = {
+  name: 'segment-align',
+  tags: ['hidden'],
+  render: (_, { id }) => `
+<style>
+  #${id} {
+    seven-segment:nth-child(1) {
+      --dartbot-align: left;
+    }
+    seven-segment:nth-child(2) {
+      --dartbot-align: right;
+    }
+  }
+</style>
+<div id="${id}">
+  <seven-segment displaytext="left" format="#######"></seven-segment>
+  <seven-segment displaytext="right" format="#######"></seven-segment>
+</div>
+  `,
+};
+
+export const AlignOver: Story = {
+  name: 'segment-align-over',
+  tags: ['hidden'],
+  render: (_, { id }) => `
+<style>
+  #${id} {
+    seven-segment:nth-child(1) {
+      --dartbot-align: left;
+    }
+    seven-segment:nth-child(2) {
+      --dartbot-align: right;
+    }
+  }
+</style>
+<div id="${id}">
+  <seven-segment displaytext="1234567890" format="#######"></seven-segment>
+  <seven-segment displaytext="1234567890" format="#######"></seven-segment>
+</div>
+  `,
+};
+
 export const SegmentWidth: Story = {
   name: 'segment-width',
   tags: ['hidden'],

@@ -1,7 +1,7 @@
 /* eslint-disable no-bitwise */
 /* eslint-disable no-plusplus */
 import { calcPoints } from './calc-points';
-import { Theme } from './token';
+import { Align, Theme } from './token';
 
 // @ts-nocheck
 
@@ -67,10 +67,12 @@ export const drawSegments = (
 
   canvasWidth -= totalSpacing;
   const elementWidth = canvasWidth / count;
+  const offset = count - mask.length;
   for (let i = 0; i < count; i++) {
     context.save();
     context.translate(i * (elementWidth + elementSpacing), 0);
-    drawSegment(theme, elementWidth, height, context, mask[i]);
+    const m = (theme.align === Align.Right ? mask[i - offset] : mask[i]) ?? 0;
+    drawSegment(theme, elementWidth, height, context, m);
     context.restore();
   }
   context.restore();
@@ -84,7 +86,6 @@ export const drawSegment = (
   mask: number,
 ) => {
   const points = calcPoints(theme, width, height, context);
-  // const valMask = 0b1101000;
   const { fillOff, fillOn, strokeOff, strokeOn, strokeWidth } = theme;
 
   for (let s = 0; s < points.length; s++) {

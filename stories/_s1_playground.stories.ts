@@ -1,11 +1,11 @@
 import type { StoryObj, Meta } from '@storybook/html';
 import { withActions } from '@storybook/addon-actions/decorator';
-import { tokenDefaults, Token } from '../src/render-segment/token';
+import { tokenDefaults, Token, Align } from '../src/render-segment/token';
 import '../src/seven-segment';
 
 export type DartboardProps = {
   [token in Token]: string | number | boolean | null;
-} & { format: string; displayText: string };
+} & { format: string; displayText: string; align: Align };
 
 const meta = {
   title: 'Playground',
@@ -21,6 +21,7 @@ export const Playground: Story = {
   args: {
     format: '########',
     displayText: 'hello',
+    [Token.align]: tokenDefaults[Token.align],
     [Token.segmentBackground]: tokenDefaults[Token.segmentBackground],
     [Token.fillOn]: tokenDefaults[Token.fillOn],
     [Token.fillOff]: tokenDefaults[Token.fillOff],
@@ -101,6 +102,21 @@ export const Playground: Story = {
       control: { type: 'boolean' },
       defaultValue: tokenDefaults[Token.sideBevelEnabled] === '1',
     },
+    format: {
+      description: 'Format of the display',
+      control: { type: 'text' },
+      defaultValue: '########',
+    },
+    displayText: {
+      description: 'Text to display on the segments',
+      control: { type: 'text' },
+      defaultValue: 'hello',
+    },
+    [Token.align]: {
+      description: 'Alignment of the segments',
+      options: ['left', 'right'],
+      control: { type: 'radio' },
+    },
   },
   render: (params, { id }) => {
     const style = `
@@ -119,6 +135,7 @@ export const Playground: Story = {
           ${Token.segmentInterval}: ${params[Token.segmentInterval]};
           ${Token.bevelWidth}: ${params[Token.bevelWidth]};
           ${Token.sideBevelEnabled}: ${params[Token.sideBevelEnabled] ? '1' : '0'};
+          ${Token.align}: ${params[Token.align]};
         }
       }
     `;

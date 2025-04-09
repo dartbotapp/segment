@@ -84,6 +84,21 @@ export class SevenSegment extends HTMLElement {
     switch (name) {
       case SevenSegmentAttributes.Format:
         this.#format = String(newValue);
+        this.#style.innerHTML = `
+            :host {
+              display: flex;
+              width: 100%;
+              aspect-ratio: ${this.count} / 1.75;
+              box-sizing: border-box;
+              user-select: none;
+              background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
+            }
+            canvas {
+              width: 100%;
+              height: 100%;
+              background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
+            }
+        `;
         break;
       case SevenSegmentAttributes.Mask:
         this.#mask = JSON.parse(String(newValue));
@@ -102,21 +117,6 @@ export class SevenSegment extends HTMLElement {
     if (ctx == null) {
       return;
     }
-    this.#style.innerHTML = `
-        :host {
-          display: flex;
-          width: 100%;
-          aspect-ratio: ${this.count} / 1.75;
-          box-sizing: border-box;
-          user-select: none;
-          background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
-        }
-        canvas {
-          width: 100%;
-          height: 100%;
-          background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
-        }
-    `;
     const style = getComputedStyle(this);
     const theme = createTheme(style);
     const props = { format: this.#format };

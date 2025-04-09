@@ -12,6 +12,12 @@ export interface Theme {
   strokeOn: string;
   strokeWidth: number;
   shear: number;
+  align: Align;
+}
+
+export enum Align {
+  Left = 'left',
+  Right = 'right',
 }
 
 export const enum Token {
@@ -28,6 +34,7 @@ export const enum Token {
   strokeOff = '--dartbot-stroke-off',
   strokeWidth = '--dartbot-stroke-width',
   shear = '--dartbot-shear',
+  align = '--dartbot-align',
 }
 
 export const tokenDefaults = {
@@ -44,6 +51,7 @@ export const tokenDefaults = {
   [Token.strokeOff]: 'black',
   [Token.strokeWidth]: '0',
   [Token.shear]: '0',
+  [Token.align]: Align.Left,
 };
 
 export const createTheme = (style: CSSStyleDeclaration): Theme => {
@@ -65,5 +73,6 @@ export const createTheme = (style: CSSStyleDeclaration): Theme => {
     strokeOff: str(Token.strokeOff),
     strokeWidth: num(Token.strokeWidth),
     shear: num(Token.shear),
+    align: str(Token.align) as Align,
   };
 };

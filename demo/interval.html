@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+</head>
+<body>
+  <div id="demoInterval"></div>
+
+  <script type="module" async>
+    import '../dist/lib/seven-segment.js';
+
+    const root = document.getElementById('demoInterval');
+    const segments = Array.from({ length: 5 }, () =>
+      document.createElement('seven-segment')
+    );
+    segments.forEach((segment, i) => {
+      segment.setAttribute('format', '######');
+      root.appendChild(segment);
+    });
+
+
+    // const segment = document.createElement('seven-segment');
+    // segment.setAttribute('format', '################');
+    // root.appendChild(segment);
+    let i = 0;
+    let pace = 1;
+    let start = performance.now();
+    const update = () => {
+
+      let end = performance.now();
+      let delta = end - start;
+      start = end;
+      i += (delta / 1000) * pace;
+      pace *= 1.01;
+
+      segments.forEach(segment => segment.setText(Math.trunc(i).toString()));
+      requestAnimationFrame(update);
+    };
+
+    // setInterval(() => {
+    //   // console.log('setInterval');
+    //   update();
+    // }, 1);
+
+    console.log('setInterval');
+    requestAnimationFrame(update);
+
+  </script>
+</body>
+</html>
