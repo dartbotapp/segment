@@ -172,13 +172,13 @@ export const Transform: Story = {
           transform: unset!important;
         }
         seven-segment:nth-child(1) {
-          transform: rotate(360deg);
+          transform: rotate(10deg);
         }
         seven-segment:nth-child(2) {
-          transform: rotate3d(0, 1, 0, 180deg)
+          transform: rotate3d(1, 0, 0, 45deg)
         }
         seven-segment:nth-child(3) {
-          transform: shear(10deg, 5deg);
+          transform: skew(10deg, 5deg);
         }
       }
     </style>

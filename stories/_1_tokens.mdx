@@ -10,7 +10,6 @@ export const tokenRow = (token, sample, description) => (
     <td>{token}</td>
     <td>{tokenDefaults[token]}</td>
     <td>{sample ? colorSample(tokenDefaults[token]) : ''}</td>
-    <td></td>
     <td>{description} </td>
   </tr>
 );
@@ -28,11 +27,126 @@ export const tokenRow = (token, sample, description) => (
     tbody > tr > td:nth-child(1) {
       white-space: nowrap;
     }
+
+    .intro-goals {
+      min-width: 30em;
+      flex-basis: 50%;
+    }
+
+    .intro-img {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 3em 0em;
+      seven-segment {
+        width: calc(50% - 1em);
+        --dartbot-element-padding: 3;
+      }
+      seven-segment:nth-child(1) {
+        --dartbot-fill-on: #7f0;
+        --dartbot-fill-off: #002500;
+        --dartbot-shear: 0;
+        --dartbot-element-spacing: 2;
+        --dartbot-stroke-on: null;
+        --dartbot-stroke-off: black;
+        --dartbot-stroke-width: 0;
+        --dartbot-segment-bg: #000;
+        --dartbot-segment-width: 5;
+        --dartbot-segment-interval: 0.75;
+        --dartbot-bevel-width: 0.1;
+        --dartbot-side-bevel-enabled: 1;
+        --dartbot-align: left;
+      }
+      seven-segment:nth-child(2) {
+        --dartbot-fill-on: #8cffff;
+        --dartbot-fill-off: #002133;
+        --dartbot-shear: 11;
+        --dartbot-element-spacing: 1;
+        --dartbot-stroke-on: null;
+        --dartbot-stroke-off: black;
+        --dartbot-stroke-width: 0;
+        --dartbot-segment-bg: #000;
+        --dartbot-segment-width: 7;
+        --dartbot-segment-interval: 0.75;
+        --dartbot-bevel-width: 0;
+        --dartbot-side-bevel-enabled: 1;
+        --dartbot-align: left;
+      }
+      seven-segment:nth-child(3) {
+        --dartbot-fill-on: transparent;
+        --dartbot-fill-off: transparent;
+        --dartbot-shear: 0;
+        --dartbot-element-spacing: 3.5;
+        --dartbot-stroke-on: #f18c00;
+        --dartbot-stroke-off: #271100;
+        --dartbot-stroke-width: 14;
+        --dartbot-segment-bg: #000;
+        --dartbot-segment-width: 6;
+        --dartbot-segment-interval: 4.5;
+        --dartbot-bevel-width: 0.1;
+        --dartbot-side-bevel-enabled: 1;
+        --dartbot-align: left;
+      }
+      seven-segment:nth-child(4) {
+        --dartbot-fill-on: #7f0;
+        --dartbot-fill-off: #030;
+        --dartbot-shear: 0;
+        --dartbot-element-spacing: 2;
+        --dartbot-stroke-on: null;
+        --dartbot-stroke-off: black;
+        --dartbot-stroke-width: 0;
+        --dartbot-segment-bg: #000;
+        --dartbot-segment-width: 1;
+        --dartbot-segment-interval: 1.2;
+        --dartbot-bevel-width: 0.43;
+        --dartbot-side-bevel-enabled: 1;
+        --dartbot-align: left;
+      }
+      seven-segment:nth-child(5) {
+        --dartbot-fill-on: #e4ff8c;
+        --dartbot-fill-off: #231700;
+        --dartbot-shear: 11;
+        --dartbot-element-spacing: 8.5;
+        --dartbot-stroke-on: null;
+        --dartbot-stroke-off: black;
+        --dartbot-stroke-width: 0;
+        --dartbot-segment-bg: #000;
+        --dartbot-segment-width: 7;
+        --dartbot-segment-interval: 0.75;
+        --dartbot-bevel-width: 0.58;
+        --dartbot-side-bevel-enabled: 1;
+        --dartbot-align: left;
+      }
+      seven-segment:nth-child(6) {
+        --dartbot-segment-background: #000;
+        --dartbot-fill-on: #f00;
+        --dartbot-fill-off: #300;
+        --dartbot-stroke-on: #ff0;
+        --dartbot-stroke-off: #000;
+        --dartbot-stroke-width: 4;
+        --dartbot-element-spacing: 2;
+        --dartbot-segment-width: 2;
+        --dartbot-segment-interval: 4;
+        --dartbot-bevel-width: .5;
+        --dartbot-side-bevel-enabled: true;
+        --dartbot-shear: 0;
+      }
+    }
   `}
 </style>
 
 <Title>Design Tokens</Title>
-<Subtitle>Customize the rendering of the segments with CSS variables</Subtitle>
+<Subtitle>Customize the display with CSS variables</Subtitle>
+
+<div className="intro-img">
+  <seven-segment displayText="hello"></seven-segment>
+  <seven-segment displayText="world"></seven-segment>
+  <seven-segment displayText="hello"></seven-segment>
+  <seven-segment displayText="world"></seven-segment>
+  <seven-segment displayText="hello"></seven-segment>
+  <seven-segment displayText="world"></seven-segment>
+</div>
+
+# Tokens
 
 <table>
   <thead>
@@ -40,40 +154,35 @@ export const tokenRow = (token, sample, description) => (
       <th>Name</th>
       <th>Default</th>
       <th>Sample</th>
-      <th></th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th colSpan="4">
-      Colors Palette
-      </th>
-    </tr>
-
-    {tokenRow(Token.segmentBackground, true, 'The background color of the component')}
-    {tokenRow(Token.fillOn, true, 'The color of the segments when they are on')}
-    {tokenRow(Token.fillOff, true, 'The color of the segments when they are off')}
-    {tokenRow(Token.strokeOn, true, 'The color of the outline stroke when segment is on')}
-    {tokenRow(Token.strokeOff, true, 'The color of the outline stroke when segment is off')}
-    {tokenRow(Token.strokeWidth, false, 'The width of the outline stroke around segments')}
-    {tokenRow(Token.elementSpacing, true, 'The spacing between the elements of the component')}
-    {tokenRow(Token.elementPadding, true, 'The padding between the elements and the component edge')}
-    {tokenRow(Token.segmentWidth, true, 'The width of the segments')}
-    {tokenRow(Token.segmentInterval, true, 'The spacing between individual segments of an element')}
-    {tokenRow(Token.bevelWidth, true, 'The size of the bevel on the segments')}
-    {tokenRow(Token.sideBevelEnabled, false, 'Whether to show the bevel on the segments')}
-    {tokenRow(Token.shear, 0, 'The shear of the segments')}
+    {tokenRow(Token.segmentBackground, true, 'Background color of the component')}
+    {tokenRow(Token.fillOn, true, 'Color of the segments when they are on')}
+    {tokenRow(Token.fillOff, true, 'Color of the segments when they are off')}
+    {tokenRow(Token.strokeOn, true, 'Color of the outline stroke when segment is on')}
+    {tokenRow(Token.strokeOff, true, 'Color of the outline stroke when segment is off')}
+    {tokenRow(Token.strokeWidth, false, 'Width of the outline stroke around segments')}
+    {tokenRow(Token.elementSpacing, true, 'Spacing between the elements of the component')}
+    {tokenRow(Token.elementPadding, true, 'Padding between the elements and the component edge')}
+    {tokenRow(Token.segmentWidth, true, 'Width of the segments')}
+    {tokenRow(Token.segmentInterval, true, 'Spacing between individual segments of an element')}
+    {tokenRow(Token.bevelWidth, true, 'Size of the bevel on the segments')}
+    {tokenRow(Token.sideBevelEnabled, false, 'Show the bevel on the side segments')}
+    {tokenRow(Token.shear, 0, 'Amount of shear of the segments')}
   </tbody>
 </table>
 
 # Usage
 
 Design tokens are applied to the component using CSS variables.
+Use any standard CSS selectors to target the element you want to style and
+add the CSS variables and values you want to change.
 
 ```html
   <style>
-    seven-segment {
+    seven-segment.hotdog-stand {
       --dartbot-segment-background: #000;
       --dartbot-fill-on: #f00;
       --dartbot-fill-off: #300;
@@ -90,13 +199,12 @@ Design tokens are applied to the component using CSS variables.
     }
   </style>
 
-  <seven-segment displayText="CSS Vars"></seven-segment>
-
+<seven-segment class="hotdog-stand" displayText="CSS"></seven-segment>
 ```
 
 <style>
 {`
-  seven-segment {
+  seven-segment.hotdog-stand {
     aspect-ratio: 5 / 1.5;
     ${Token.segmentBackground}: #200;
     ${Token.fillOn}: #f00;
@@ -115,4 +223,4 @@ Design tokens are applied to the component using CSS variables.
 `}
 </style>
 
-<seven-segment displayText="CSS"></seven-segment>
+<seven-segment class="hotdog-stand" displayText="CSS"></seven-segment>

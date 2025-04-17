@@ -1,5 +1,4 @@
 import type { StoryObj, Meta } from '@storybook/html';
-import { withActions } from '@storybook/addon-actions/decorator';
 import { tokenDefaults, Token, Align } from '../src/render-segment/token';
 import '../src/seven-segment';
 
@@ -149,4 +148,41 @@ export const Playground: Story = {
     `;
     return template;
   },
+};
+
+export const Increment: Story = {
+  name: 'Increment',
+  decorators: [],
+  tags: ['hidden'],
+  render: (_, { id }) => `
+<style>
+  #${id} > seven-segment {
+    ${Token.align}: right;
+    ${Token.elementPadding}: 2;
+    ${Token.elementSpacing}: 3;
+    ${Token.segmentWidth}: 6;
+  }
+</style>
+<div id="${id}">
+  <seven-segment></seven-segment>
+</div>
+<script>
+  (() => {
+    console.log('increment');
+    const count = 5;
+    const max = Math.pow(10, count) - 1;
+    const segments = document.querySelectorAll('#${id} seven-segment')[0];
+    segments.setAttribute('format', '#'.repeat(count));
+    let i = performance.now();
+    function update(){
+      const now = performance.now();
+      const interval = (Math.floor((now - i) / 10) % max);
+      const value = max - interval;
+      segments.setText((value).toString());
+      requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  })();
+</script>
+  `,
 };

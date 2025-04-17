@@ -5,7 +5,6 @@ import { debounce } from './utils';
 
 export enum SevenSegmentAttributes {
   Format = 'format',
-  Mask = 'mask',
   DisplayText = 'displaytext',
 }
 
@@ -23,11 +22,7 @@ export class SevenSegment extends HTMLElement {
   static RESIZE_DEBOUNCE_MS = 100;
 
   static get observedAttributes() {
-    return [
-      SevenSegmentAttributes.Format,
-      SevenSegmentAttributes.Mask,
-      SevenSegmentAttributes.DisplayText,
-    ];
+    return [SevenSegmentAttributes.Format, SevenSegmentAttributes.DisplayText];
   }
 
   get count() {
@@ -100,9 +95,6 @@ export class SevenSegment extends HTMLElement {
             }
         `;
         break;
-      case SevenSegmentAttributes.Mask:
-        this.#mask = JSON.parse(String(newValue));
-        break;
       case SevenSegmentAttributes.DisplayText:
         this.setText(String(newValue));
         break;
@@ -144,5 +136,31 @@ export class SevenSegment extends HTMLElement {
   setNumber(val: number) {
     const v = String(val);
     this.setText(v);
+  }
+
+  /**
+   * Return the image data encoded as a data URL.
+   * @param type The image format. Default is `image/png`.
+   * @param quality The image quality. Default is `1.0`.
+   */
+  toDataURL(type?: string, quality?: number): string {
+    return this.#canvas.toDataURL(type, quality);
+  }
+
+  /**
+   * Return the image data as a Blob.
+   * @param type The image format. Default is `image/png`.
+   * @param quality The image quality. Default is `1.0`.
+   */
+  toBlob(type?: string, quality?: number): Promise<Blob> {
+    return new Promise<Blob>(resolve => {
+      this.#canvas.toBlob(
+        blob => {
+          resolve(blob!);
+        },
+        type,
+        quality,
+      );
+    });
   }
 }

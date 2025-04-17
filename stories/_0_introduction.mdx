@@ -1,11 +1,12 @@
-import { Meta, Title, Subtitle, Subheading } from '@storybook/blocks';
+import { Meta, Title, Subtitle, Subheading, Canvas } from '@storybook/blocks';
+import * as PlaygroundStories from './_s1_playground.stories';
 import '../src/seven-segment.ts';
 
 <Meta title="Introduction" name="ToC" />
 <Title>Introduction</Title>
 <Subtitle>A vanilla web component that renders an fully customizable and performant segmented display</Subtitle>
 
-<div>
+<div style={{display: 'flex', gap: '.2em', flexWrap: 'wrap'}}>
   <a href="https://github.com/dartbotapp/segment" rel="noopener noreferrer" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-Code-232323.svg?style=flat&amp;logo=github&amp;logoColor=white" alt="GitHub" />
   </a>
@@ -25,26 +26,18 @@ import '../src/seven-segment.ts';
 
 <style>
 {`
-  #intro {
-    display: flex;
-  }
-  .intro-img {
-    min-width: 20em;
-    display:flex;
-    flex-basis: 50%;
-  }
   .intro-goals {
     min-width: 30em;
     flex-basis: 50%;
   }
-  @media screen and (max-width: 1280px) {
-    #intro {
-      display: block;
-    }
+  .example seven-segment {
+    --dartbot-align: right;
+    margin: 2em 0em;
   }
 `}
-
 </style>
+
+<Canvas of={PlaygroundStories.Increment  } />
 
 <div id="intro">
   <div className="intro-goals" style={{ 'paddingRight': '4em '}}>
@@ -72,9 +65,7 @@ import '../src/seven-segment.ts';
     🏎️💨 **Performance**
     High performance, low memory usage, and fast rendering
   </div>
-  <div className="intro-img">
-    <img src="../../storybook-public/segments.png" alt="Dartboard" title="Dartboard" />
-  </div>
+
 </div>
 
 ## Installation
@@ -105,4 +96,4 @@ Dartbot is tested in the latest version of the following browsers.
 Older browsers may require [polyfills to support web component](https://github.com/webcomponents/polyfills) features required by this library.
 
 ## License
-Dartbot was created by Stephen Marsh. It’s available under the terms of the MIT license.
+Dartbot was created with ❤️ by Stephen Marsh. It’s available under the terms of the MIT license.

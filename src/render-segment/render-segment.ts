@@ -39,6 +39,10 @@ export const drawSegments = (
   const count = format.match(/#/g)?.length || 0;
   const { width, height } = context.canvas;
 
+  // Fill background
+  context.fillStyle = theme.segmentBackground;
+  context.fillRect(0, 0, width, height);
+
   const { elementPadding } = theme;
 
   const canvasPadding = elementPadding * unit;

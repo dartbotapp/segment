@@ -28,29 +28,30 @@ export const Dimensions: Story = {
 <style>
   #${id} {
     seven-segment:nth-child(1) {
-      width: 8em;
+      width: 10em;
       height: 18em;
     }
     seven-segment:nth-child(2) {
       width: 18em;
-      height: 10em;
+      height: 4em;
     }
     seven-segment:nth-child(3) {
-      width: 10em;
+      width: 22em;
       height: 12em;
     }
   }
 </style>
 <div id="${id}">
-  <seven-segment></seven-segment>
-  <seven-segment></seven-segment>
-  <seven-segment></seven-segment>
+  <seven-segment displayText="hello"></seven-segment>
+  <seven-segment displayText="hello"></seven-segment>
+  <seven-segment displayText="hello"></seven-segment>
 </div>
 `,
 };
 
 export const Dynamic: Story = {
   name: 'Resize',
+  tags: ['hidden'],
   decorators: [],
   render: (_, { id }) => `
 <style data-dartbot-remove>
@@ -75,7 +76,7 @@ export const Dynamic: Story = {
 </style>
 <pre>Click and drag the bottom right corner to resize</pre>
 <div id="${id}">
-  <seven-segment format="###########################" displayText="a man a plan a canal panama"></seven-segment>
+  <seven-segment format="###############" displayText="Havana Oh Na Na"></seven-segment>
 </div>
   `,
 };
@@ -106,9 +107,9 @@ export const Width: Story = {
   }
 </style>
 <div id="${id}">
-  <seven-segment></seven-segment>
-  <seven-segment></seven-segment>
-  <seven-segment></seven-segment>
+  <seven-segment displayText="size" format="######"></seven-segment>
+  <seven-segment displayText="size" format="######"></seven-segment>
+  <seven-segment displayText="size" format="######"></seven-segment>
 </div>
 `,
 };
@@ -137,8 +138,8 @@ export const AspectRatio: Story = {
   }
 </style>
 <div id="${id}">
-  <seven-segment></seven-segment>
-  <seven-segment></seven-segment>
+  <seven-segment displayText="aspect" format="######"></seven-segment>
+  <seven-segment displayText="aspect" format="######"></seven-segment>
 </div>
 `,
 };

@@ -1,6 +1,4 @@
 <h1>&lt;seven-segment&gt; A Segmented Display Web Component</h1>
-<!--
-![Dartboards rendered with different styles](https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/board_themes.JPG) -->
 
 <div>
   <a href="https://github.com/dartbotapp/segment" rel="noopener noreferrer" target="_blank"><img src="https://img.shields.io/badge/GitHub-Code-232323.svg?style=flat&amp;logo=github&amp;logoColor=white" alt="GitHub" /></a>
@@ -10,14 +8,18 @@
   <a href="https://github.com/dartbotapp/segment/blob/main/LICENSE" rel="noopener noreferrer" target="_blank"><img src="https://img.shields.io/badge/license-MIT-232323.svg?style=flat" alt="License" /></a>
 </div>
 
+<img src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/segment_interval.gif" style="width:22em; border:.1em solid #fff; margin:2em 0" />
+
+
 ---
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
-<h3><a href="https://docs.dartbot.com/segment"><img style="width:.9em;margin-right:.2em" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/storybook.svg">Storybook Documentation</</a></h3>
-
-- **Demo** - For a <a href="https://docs.dartbot.com/segment">live demo</a> visit the Storybook docs</a>
-- <a href="https://medium.com/p/0fee96256bf4">Tutorial and walkthrough</a> on Medium
+<h3>
+  <a href="https://docs.dartbot.com/segment">
+    <img style="width:.9em;margin-right:.2em" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/storybook.svg">Storybook Documentation</>
+  </a>
+</h3>
 
 ## Design Goals
 
@@ -111,12 +113,12 @@ npm start
 To run a local development server that serves the basic demo located in `demo/index.html`
 
 ## To Do
-- [ ] Set Format
+- [x] Set Format
   - [x] char masks
   - [x] align
-- [ ] Export Image
-  - [ ] standard
-  - [ ] large size
+- [x] Export Image
+  - [x] standard
+  - [x] large size
 - [ ] Auto color calc
 - [ ] Create your own
 - [ ] Styles (shadow, glow)
@@ -124,4 +126,5 @@ To run a local development server that serves the basic demo located in `demo/in
   - [ ] marquee, blink, rotate, rotate fill
 - [ ] Additional segments
   - [ ] 16, 14, Posey
+- [ ] Accessibility https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/canvas#maximum_canvas_size
 - [ ] Unit Tests
