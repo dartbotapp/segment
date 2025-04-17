@@ -1,6 +1,6 @@
 {
   "name": "@dartbot/segment",
-  "version": "0.3.1-0",
+  "version": "0.3.1-rc.0",
   "description": "Segmented display implementd as a vanilla Web Component",
   "keywords": [
     "segment",
