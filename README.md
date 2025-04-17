@@ -8,8 +8,12 @@
   <a href="https://github.com/dartbotapp/segment/blob/main/LICENSE" rel="noopener noreferrer" target="_blank"><img src="https://img.shields.io/badge/license-MIT-232323.svg?style=flat" alt="License" /></a>
 </div>
 
-<img src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/segment_interval.gif" style="width:22em; border:.1em solid #fff; margin:2em 0" />
 
+<p>&nbsp</p>
+
+<div>
+  <img width="400" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/segment_interval.gif" />
+</div>
 
 ---
 
@@ -17,7 +21,7 @@ This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) reco
 
 <h3>
   <a href="https://docs.dartbot.com/segment">
-    <img style="width:.9em;margin-right:.2em" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/storybook.svg">Storybook Documentation</>
+    <img style="width:1em; margin-right: .25em" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/storybook.svg" />Storybook Documentation
   </a>
 </h3>
 
