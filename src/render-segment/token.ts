@@ -13,6 +13,8 @@ export interface Theme {
   strokeWidth: number;
   shear: number;
   align: Align;
+  glowInner: number;
+  glowOuter: number;
 }
 
 export enum Align {
@@ -35,6 +37,8 @@ export const enum Token {
   strokeWidth = '--dartbot-stroke-width',
   shear = '--dartbot-shear',
   align = '--dartbot-align',
+  glowInner = '--dartbot-glow-inner',
+  glowOuter = '--dartbot-glow-outer',
 }
 
 export const tokenDefaults = {
@@ -52,6 +56,8 @@ export const tokenDefaults = {
   [Token.strokeWidth]: '0',
   [Token.shear]: '0',
   [Token.align]: Align.Left,
+  [Token.glowInner]: '0',
+  [Token.glowOuter]: '0',
 };
 
 export const createTheme = (style: CSSStyleDeclaration): Theme => {
@@ -74,5 +80,7 @@ export const createTheme = (style: CSSStyleDeclaration): Theme => {
     strokeWidth: num(Token.strokeWidth),
     shear: num(Token.shear),
     align: str(Token.align) as Align,
+    glowInner: num(Token.glowInner),
+    glowOuter: num(Token.glowOuter),
   };
 };

@@ -13,15 +13,8 @@ const sqrt3 = Math.sqrt(3);
 const clip = (min: number, max: number, val: number) =>
   Math.max(min, Math.min(max, val));
 
-export const calcPoints = (
-  theme: Theme,
-  width: number,
-  height: number,
-  context: CanvasRenderingContext2D,
-) => {
-  const text = context.measureText('M');
-  let unit = text.fontBoundingBoxDescent + text.fontBoundingBoxAscent;
-  unit = width / 10;
+export const calcPoints = (theme: Theme, width: number, height: number) => {
+  const unit = width / 10;
 
   const w = width;
   const h = height;
@@ -105,4 +98,20 @@ const flipHorizontal = (points: Point[], width: number): Point[] => {
     flipped[i] = { x, y };
   }
   return flipped;
+};
+
+export const findPolygonCenter = (points: Point[]): Point => {
+  let xSum = 0;
+  let ySum = 0;
+  const numPoints = points.length;
+
+  for (const point of points) {
+    xSum += point.x;
+    ySum += point.y;
+  }
+
+  return {
+    x: xSum / numPoints,
+    y: ySum / numPoints,
+  };
 };

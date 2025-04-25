@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 /* eslint-disable no-plusplus */
-import { calcPoints } from './calc-points';
+import { calcPoints, findPolygonCenter } from './calc-points';
 import { Align, Theme } from './token';
 
 // @ts-nocheck
@@ -31,13 +31,10 @@ export const drawSegments = (
   context: CanvasRenderingContext2D,
   mask: number[],
 ) => {
-  context.font = '1em';
-  const text = context.measureText('M');
-  let unit = text.fontBoundingBoxDescent + text.fontBoundingBoxAscent;
-  unit = 10;
   const { format } = props;
   const count = format.match(/#/g)?.length || 0;
   const { width, height } = context.canvas;
+  const unit = 10;
 
   // Fill background
   context.fillStyle = theme.segmentBackground;
@@ -89,16 +86,26 @@ export const drawSegment = (
   context: CanvasRenderingContext2D,
   mask: number,
 ) => {
-  const points = calcPoints(theme, width, height, context);
-  const { fillOff, fillOn, strokeOff, strokeOn, strokeWidth } = theme;
+  const points = calcPoints(theme, width, height);
+  const {
+    fillOff,
+    fillOn,
+    strokeOff,
+    strokeOn,
+    strokeWidth,
+    glowInner,
+    glowOuter,
+  } = theme;
 
   for (let s = 0; s < points.length; s++) {
+    context.save();
     const on = mask & (1 << s);
     const color = on ? fillOn : fillOff;
     const stroke = on ? strokeOn : strokeOff;
     context.lineWidth = strokeWidth;
     context.strokeStyle = stroke;
     context.fillStyle = color;
+
     context.beginPath();
     const { x, y } = points[s][0];
     context.moveTo(x, y);
@@ -106,9 +113,39 @@ export const drawSegment = (
       context.lineTo(points[s][p].x, points[s][p].y);
     }
     context.closePath();
+
+    context.save();
+    if (on && glowOuter > 0) {
+      const unit = width;
+      const glowWidth = glowOuter * unit;
+      context.shadowColor = color;
+      context.shadowBlur = glowWidth;
+    }
     context.fill();
+    context.restore();
+
+    if (on && glowInner > 0) {
+      context.save();
+      const center = findPolygonCenter(points[s]);
+      const grd = context.createRadialGradient(
+        center.x,
+        center.y,
+        10,
+        center.x,
+        center.y,
+        width,
+      );
+      grd.addColorStop(0, `rgba(255,255,255,${glowInner})`);
+      grd.addColorStop(1, '#fff0');
+      context.fillStyle = grd;
+      context.globalCompositeOperation = 'lighter';
+      context.fill();
+      context.restore();
+    }
+
     if (strokeWidth > 0) {
       context.stroke();
     }
+    context.restore();
   }
 };

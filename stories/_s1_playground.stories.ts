@@ -34,6 +34,8 @@ export const Playground: Story = {
     [Token.segmentInterval]: parseFloat(tokenDefaults[Token.segmentInterval]),
     [Token.bevelWidth]: parseFloat(tokenDefaults[Token.bevelWidth]),
     [Token.sideBevelEnabled]: tokenDefaults[Token.sideBevelEnabled] === '1',
+    [Token.glowInner]: parseFloat(tokenDefaults[Token.glowInner]),
+    [Token.glowOuter]: parseFloat(tokenDefaults[Token.glowOuter]),
   },
   argTypes: {
     [Token.fillOn]: {
@@ -116,6 +118,16 @@ export const Playground: Story = {
       options: ['left', 'right'],
       control: { type: 'radio' },
     },
+    [Token.glowInner]: {
+      description: 'Glow effect inside the segments',
+      control: { type: 'range', min: 0, max: 1, step: 0.01 },
+      defaultValue: tokenDefaults[Token.glowInner],
+    },
+    [Token.glowOuter]: {
+      description: 'Glow effect outside the segments',
+      control: { type: 'range', min: 0, max: 1, step: 0.01 },
+      defaultValue: tokenDefaults[Token.glowOuter],
+    },
   },
   render: (params, { id }) => {
     const style = `
@@ -135,6 +147,8 @@ export const Playground: Story = {
           ${Token.bevelWidth}: ${params[Token.bevelWidth]};
           ${Token.sideBevelEnabled}: ${params[Token.sideBevelEnabled] ? '1' : '0'};
           ${Token.align}: ${params[Token.align]};
+          ${Token.glowInner}: ${params[Token.glowInner]};
+          ${Token.glowOuter}: ${params[Token.glowOuter]};
         }
       }
     `;
@@ -168,7 +182,6 @@ export const Increment: Story = {
 </div>
 <script>
   (() => {
-    console.log('increment');
     const count = 5;
     const max = Math.pow(10, count) - 1;
     const segments = document.querySelectorAll('#${id} seven-segment')[0];

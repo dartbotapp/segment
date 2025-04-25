@@ -10,7 +10,6 @@
 
 
 <p>&nbsp</p>
-
 <div>
   <img width="400" src="https://raw.githubusercontent.com/dartbotapp/segment/refs/heads/main/storybook-public/segment_interval.gif" />
 </div>

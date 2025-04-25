@@ -112,3 +112,61 @@ export const BackgroundColors: Story = {
 </div>
   `,
 };
+
+export const GlowInner: Story = {
+  name: 'glow-inner',
+  tags: ['hidden'],
+  render: (_, { id }) => `
+<style>
+  #${id} {
+    seven-segment {
+      ${Token.fillOn}:rgb(0, 213, 255);
+      ${Token.fillOff}: #0d191d;
+    }
+    seven-segment:nth-child(1) {
+      ${Token.glowInner}: 0;
+    }
+    seven-segment:nth-child(2) {
+      ${Token.glowInner}: .5;
+    }
+    seven-segment:nth-child(3) {
+      ${Token.glowInner}: .8;
+    }
+  }
+</style>
+<div id="${id}">
+  <seven-segment displaytext="hello"></seven-segment>
+  <seven-segment displaytext="hello"></seven-segment>
+  <seven-segment displaytext="hello"></seven-segment>
+</div>
+  `,
+};
+
+export const GlowOuter: Story = {
+  name: 'glow-outer',
+  tags: ['hidden'],
+  render: (_, { id }) => `
+<style>
+  #${id} {
+    seven-segment {
+      ${Token.fillOn}: #65e6ff;
+      ${Token.fillOff}: #0d191d;
+    }
+    seven-segment:nth-child(1) {
+      ${Token.glowOuter}: 0;
+    }
+    seven-segment:nth-child(2) {
+      ${Token.glowOuter}: .15;
+    }
+    seven-segment:nth-child(3) {
+      ${Token.glowOuter}: .7;
+    }
+  }
+</style>
+<div id="${id}">
+  <seven-segment displaytext="hello"></seven-segment>
+  <seven-segment displaytext="hello"></seven-segment>
+  <seven-segment displaytext="hello"></seven-segment>
+</div>
+  `,
+};
