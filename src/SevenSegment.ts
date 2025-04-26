@@ -9,6 +9,12 @@ export enum SevenSegmentAttributes {
 }
 
 export class SevenSegment extends HTMLElement {
+  static readonly RESIZE_DEBOUNCE_MS = 100;
+
+  static get observedAttributes() {
+    return [SevenSegmentAttributes.Format, SevenSegmentAttributes.DisplayText];
+  }
+
   #canvas: HTMLCanvasElement;
 
   #style: HTMLStyleElement;
@@ -19,40 +25,17 @@ export class SevenSegment extends HTMLElement {
 
   #mask: number[] = [];
 
-  static RESIZE_DEBOUNCE_MS = 100;
-
-  static get observedAttributes() {
-    return [SevenSegmentAttributes.Format, SevenSegmentAttributes.DisplayText];
-  }
-
-  get count() {
-    return this.#format.match(/#/g)?.length || 0;
-  }
-
   constructor() {
     super();
     this.#format = '#####';
     this.#shadow = this.attachShadow({ mode: 'open' });
     this.#shadow.innerHTML = `
-      <style>
-        :host {
-          display: flex;
-          width: 100%;
-          aspect-ratio: ${this.count} / 1.75;
-          box-sizing: border-box;
-          user-select: none;
-          background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
-        }
-        canvas {
-          width: 100%;
-          height: 100%;
-          background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
-        }
-      </style>
+      <style></style>
       <canvas></canvas>
     `;
     this.#canvas = this.#shadow.querySelector('canvas')!;
     this.#style = this.#shadow.querySelector('style')!;
+    this.setStyle();
 
     const resizeObserver = new ResizeObserver(
       debounce(
@@ -79,21 +62,7 @@ export class SevenSegment extends HTMLElement {
     switch (name) {
       case SevenSegmentAttributes.Format:
         this.#format = String(newValue);
-        this.#style.innerHTML = `
-            :host {
-              display: flex;
-              width: 100%;
-              aspect-ratio: ${this.count} / 1.75;
-              box-sizing: border-box;
-              user-select: none;
-              background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
-            }
-            canvas {
-              width: 100%;
-              height: 100%;
-              background: var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]});
-            }
-        `;
+        this.setStyle();
         break;
       case SevenSegmentAttributes.DisplayText:
         this.setText(String(newValue));
@@ -104,7 +73,7 @@ export class SevenSegment extends HTMLElement {
     this.render();
   }
 
-  private render() {
+  render() {
     const ctx = this.#canvas.getContext('2d');
     if (ctx == null) {
       return;
@@ -115,11 +84,19 @@ export class SevenSegment extends HTMLElement {
     render(theme, props, ctx, this.#mask);
   }
 
+  /**
+   * Turn on specific segments by setting the bit to 1
+   * @param mask Array of segment masks
+   */
   setMask(mask: number[]) {
     this.#mask = mask;
     this.render();
   }
 
+  /**
+   *
+   * @param val
+   */
   setText(val: string) {
     const chars = Array.from(val);
     const masks = chars.map(
@@ -127,15 +104,10 @@ export class SevenSegment extends HTMLElement {
         charMasks[c] ||
         charMasks[c.toLocaleUpperCase()] ||
         charMasks[c.toLocaleLowerCase()] ||
-        charMasks[' '],
+        0,
     );
     this.#mask = masks;
     this.render();
-  }
-
-  setNumber(val: number) {
-    const v = String(val);
-    this.setText(v);
   }
 
   /**
@@ -162,5 +134,29 @@ export class SevenSegment extends HTMLElement {
         quality,
       );
     });
+  }
+
+  /**
+   * Set the base styles for the component
+   *
+   */
+  private setStyle() {
+    const count = this.#format.match(/#/g)?.length || 0;
+    const bg = `var(${Token.segmentBackground}, ${tokenDefaults[Token.segmentBackground]})`;
+    this.#style.innerHTML = `
+      :host {
+        display: flex;
+        width: 100%;
+        aspect-ratio: ${count} / 1.75;
+        box-sizing: border-box;
+        user-select: none;
+        background: ${bg};
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+        background: ${bg};
+      }
+    `;
   }
 }

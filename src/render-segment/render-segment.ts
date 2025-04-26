@@ -18,8 +18,8 @@ export const render = (
   if (context == null) {
     return;
   }
-  context.save();
   const { width, height } = context.canvas;
+  context.save();
   context.clearRect(0, 0, width, height);
   drawSegments(theme, props, context, mask);
   context.restore();
